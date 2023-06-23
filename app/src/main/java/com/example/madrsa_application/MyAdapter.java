@@ -1,5 +1,6 @@
 package com.example.madrsa_application;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,16 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyVH> {
         holder.Sabaq.setText(holder.data.get_verse());
         holder.Sbqi.setText(String.valueOf(holder.data.get_sbqi()));
         holder.Mnzil.setText(String.valueOf(holder.data.get_mnzil()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start the EditActivity with the selected Student's ID
+                Intent intent = new Intent(view.getContext(), Update_delete.class);
+                intent.putExtra("studentId", holder.data.get_Id()); // Pass the Student ID to the EditActivity
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
